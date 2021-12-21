@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+@keyframes anim{
+0%{background-color: #fef3d2;}
+30%{background-color: #edcfc0;}
+60%{background-color: #c3d3d6;}
+85%{background-color: #d5dbe4;}
+100%{background-color: #e4d5e3;}
+}
+body{
+    animation: anim 10s infinite;
+    color: #77568f;
+    font-family: cursive;
+}
+#nav{
+display: flex;
+width: 700px;
+justify-content: space-between; /*как браузер распределяет пространство между и вокруг элементов контента вдоль главной оси flex контейнера*/
+padding: 50px 200px;
+}
+.menu-item{
+display: inline-block;/* блочный элемент, который обтекается другими элементами веб-страницы подобно встроенному элементу*/
+position: relative;/*Положение элемента устанавливается относительно его исходного места*/
+cursor: pointer;
+}
+.menu-item .submenu{
+height: 40px;
+width: 120;
+background: rgb(235, 225, 229);
+position: absolute;
+cursor: pointer;
+}
+        </style>
+    </head>
+    <body>
+            <div id="nav">
+            <div class="menu-item">
+             Меню 1
+            <div class="submenu">
+            Подменю
+            </div></div>
+            <div class="menu-item">
+             Меню 2
+            <div class="submenu">
+            Подменю
+            </div></div>
+            <div class="menu-item">
+             Меню 3
+            <div class="submenu">
+            Подменю
+            </div></div>
+            </div>
+
+            
+            <script type="text/javascript">
+            document.getElementById('nav').onmouseover = function (event) {
+                var target = event.target; //элемент на котором было вызвано событие
+                if (target.className == 'menu-item') {
+                    var s = target.getElementsByClassName('submenu');
+                    closeMenu();
+                    for (let i = 0; i < s.length; i++) {
+                        s[i].style.display = 'block';
+                    }
+                }
+            }     
+            document.onmouseover = function (event) {
+                var target = event.target;
+                if (target.className != 'menu-item' && target.className != 'submenu') {
+                    closeMenu();
+                }
+            }
+            function closeMenu() {
+                var subm = document.getElementsByClassName('submenu');
+                for (var i = 0; i < subm.length; i++) {
+                    subm[i].style.display = "none";
+                }
+            }
+            </script>
+    </body>
+</html>
